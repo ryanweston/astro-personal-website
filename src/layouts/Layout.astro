@@ -1,0 +1,117 @@
+---
+import { generateColors } from '../utils/color.js'
+
+export interface Props {
+	title: string;
+}
+
+const { title, readerMode } = Astro.props;
+
+const { foreground, background } = generateColors()
+console.log(foreground, background)
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+		<title>{title}</title>
+	</head>
+	<body>
+    <div class="absolute bottom-10 right-10 space-x-1">
+      <button 
+        id="button" 
+        class="bg-[var(--foreground)] px-4 py-2 text-[var(--background)] rounded-full font-medium"
+      >
+        Randomise
+      </button>
+      { readerMode && 
+        <button 
+          id="reader" 
+          class="bg-[var(--foreground)] px-4 py-2 text-[var(--background)] rounded-full font-medium"
+        >
+          Reader
+        </button>
+      }
+    </div>
+    <main class="mt-[25vh] max-w-3xl mx-auto">
+      <slot />
+    </main>
+	</body> 
+</html>
+
+<script define:vars={{ foreground, background }}>
+  const html = document.querySelector(':root')
+
+  const setColors = (background, foreground) => { 
+    html?.style.setProperty('--background', background)
+    html?.style.setProperty('--foreground', foreground)
+  }
+
+  if (!sessionStorage.getItem('colors')) {
+    sessionStorage.setItem('colors', JSON.stringify({ foreground, background }))
+    setColors(background, foreground)
+  } else { 
+    const { background, foreground } = JSON.parse(sessionStorage.getItem('colors'))
+    setColors(background, foreground)
+  }
+  
+</script>
+
+<script>
+  import { generateColors } from '../utils/color.js'
+
+  const colorButton = document.getElementById('button')
+  const html = document.querySelector(':root')
+
+  const setColors = (background: string, foreground: string) => { 
+    html?.style.setProperty('--background', background)
+    html?.style.setProperty('--foreground', foreground)
+  }
+
+  if (colorButton)
+    colorButton.addEventListener('click', () => {
+      const {foreground, background} = generateColors()
+      sessionStorage.setItem('colors', JSON.stringify({ foreground, background }))
+      setColors(background, foreground)
+    })
+</script>
+
+<script>
+  const readerButton = document.getElementById('reader')
+  const html = document.querySelector(':root')
+
+  const setColors = (background: string, foreground: string) => { 
+    html?.style.setProperty('--background', background)
+    html?.style.setProperty('--foreground', foreground)
+  }
+
+  if (readerButton)
+    readerButton.addEventListener('click', () => {
+      setColors('#FFFFFF', '#000000')
+    })
+</script>
+
+<style is:global define:vars={{ foreground, background }}>
+	:root {
+    @apply bg-[var(--background)] text-[var(--foreground)];
+	}
+
+  @font-face {
+    font-family: 'GeneralSans';
+    src: url('/fonts/GeneralSans-Variable.woff2') format('woff2');
+  }
+  
+  pre { 
+    @apply px-4 py-4 rounded-md text-lg;
+  }
+
+	code {
+		font-family: 'GeneralSans', Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+			Bitstream Vera Sans Mono, Courier New, monospace;
+	}
+</style>
