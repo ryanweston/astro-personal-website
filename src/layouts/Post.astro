@@ -6,14 +6,23 @@ const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric
 ---
 
 <Layout title={frontmatter.title} readerMode>
-  <div class="space-y-12">
+  <div class="space-y-8">
     <a href="/" class="font-medium">Back</a>
-    <div class="space-y-4">
-      <h1 class="text-6xl font-semibold">{frontmatter.title}</h1>    
-      <p class="font-medium">{new Date(frontmatter.pubDate).toLocaleDateString('en-US', options)}</p>
-    </div>
-    <div class="space-y-4 text-xl font-blog">
-      <slot />
+    <div class="space-y-12">
+      <div class="space-y-8">
+        <h1 class="text-6xl font-semibold">{frontmatter.title}</h1>   
+        <div class="space-x-4 flex flex-row items-center">
+          <div class="space-x-1">
+            { frontmatter.tags.map((tag: string) => 
+              <p class="text-xs font-semibold inline-block px-3 py-1 bg-[var(--foreground)] rounded-full text-[var(--background)]">{tag}</p>  
+            )}
+          </div>
+          <p class="text-sm font-medium">{new Date(frontmatter.pubDate).toLocaleDateString('en-US', options)}</p>
+        </div>
+      </div>
+      <div class="space-y-8 text-xl font-blog">
+        <slot />
+      </div>
     </div>
   </div>
 </Layout>

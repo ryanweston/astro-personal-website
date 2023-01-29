@@ -6,7 +6,7 @@ const allPosts = await Astro.glob('../pages/posts/*.md')
 const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Ryan Weston">
   <div class="space-y-14">
     <div class="space-y-8">
       <h1 class="text-5xl font-semibold">Hi, I'm Ryan.</h1>
@@ -31,7 +31,7 @@ const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric
               <div class="space-x-4 flex flex-row items-center">
                 <div class="space-x-1">
                   { post.frontmatter.tags.map((tag: string) => 
-                    <p class="text-xs font-semibold inline-block px-3 py-1 bg-[var(--foreground)] rounded-full text-[var(--background)]">{tag}</p>  
+                    <p class="text-xs opacity-50 font-semibold inline-block px-3 py-1 bg-[var(--foreground)] rounded-full text-[var(--background)]">{tag}</p>  
                   )}
                 </div>
                 <p class="text-sm font-medium">{new Date(post.frontmatter.pubDate).toLocaleDateString('en-US', options)}</p>

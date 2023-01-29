@@ -52,7 +52,6 @@ export const contrast = (background: number, foreground:number) => {
 }
 
 export const generateColors = () => { 
-  console.log('GENERATING')
   let c = { r: randomise(0, 255), g: randomise(0, 255), b: randomise(0, 255) }
   let hsl = rgbToHsl(c.r, c.g, c.b)
 

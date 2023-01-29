@@ -1,8 +1,8 @@
 ---
 layout: ../../layouts/Post.astro
-title: 'Example second post'
-pubDate: 2022-07-01
-description: 'Second post'
+title: 'Improving as a frontend engineer'
+pubDate: 2023-02-01
+description: 'Continuing to improve as a frontend engineer and finding my niche.'
 tags: ["astro", "blogging", "react"]
 ---
 
