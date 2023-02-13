@@ -9,7 +9,7 @@ const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric
 <Layout title="Ryan Weston">
   <div class="space-y-14">
     <div class="space-y-8">
-      <h1 class="text-5xl font-semibold">Hi, I'm Ryan.</h1>
+      <h1 class="text-4xl font-medium">Hi, I'm Ryan.</h1>
       <p class="text-3xl leading-10">
         I'm an engineer & designer with a passion for design systems, problem solving
         & writing. I'm currently working as a frontend engineer at <a class="border-b-2 border-[var(--foreground)] pb-1 hover:cursor-pointer">Cudo Ventures</a>.
@@ -18,28 +18,37 @@ const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric
         <Button href="/">
           Read case studies
         </Button>
-        <a href="/" class="font-medium">Request resume</a>
+        <a href="/" class="font-medium text-sm">Request resume</a>
       </div>
     </div>
     <div>
-      <h2 class='font-medium pb-2'>Writing</h2>
+      <h2 class='pb-2'>Writing</h2>
+      <div class="grid grid-cols-2 gap-6">
       <ul role="list">
         { allPosts.map((post) => 
-          <li class="space-y-2  py-4">
-            <a href={post.url} class="space-y-2">
-              <h4 class="text-2xl font-medium">{post.frontmatter.title}</h4>
-              <div class="space-x-4 flex flex-row items-center">
-                <div class="space-x-1">
-                  { post.frontmatter.tags.map((tag: string) => 
-                    <p class="text-xs opacity-50 font-semibold inline-block px-3 py-1 bg-[var(--foreground)] rounded-full text-[var(--background)]">{tag}</p>  
-                  )}
-                </div>
-                <p class="text-sm font-medium">{new Date(post.frontmatter.pubDate).toLocaleDateString('en-US', options)}</p>
+          <li class="space-y-2 py-4">
+            <a href={post.url} class="space-y-3">
+              <div class="space-x-4 flex flex-row items-center opacity-60">
+                <p class="border-l-2 font-medium border-[var(--foreground)] pl-3 text-sm text-[var(--foreground)]">{new Date(post.frontmatter.pubDate).toLocaleDateString('en-US', options)}</p>
               </div>
+              <h4 class="text-xl">{post.frontmatter.title}</h4>
             </a>
           </li>
         )}
       </ul>
+      <ul role="list">
+        { allPosts.map((post) => 
+          <li class="space-y-2 py-4">
+            <a href={post.url} class="space-y-3">
+              <div class="space-x-4 flex flex-row items-center opacity-60">
+                <p class="border-l-2 font-medium border-[var(--foreground)] pl-3 text-sm text-[var(--foreground)]">{new Date(post.frontmatter.pubDate).toLocaleDateString('en-US', options)}</p>
+              </div>
+              <h4 class="text-xl">{post.frontmatter.title}</h4>
+            </a>
+          </li>
+        )}
+      </ul>
+    </div>
     </div>
   </div>
 </Layout>
