@@ -1,13 +1,10 @@
 ---
-import { generateColors } from '../utils/color.js'
-
 export interface Props {
 	title: string;
 }
 
 const { title } = Astro.props;
 
-const { foreground, background } = generateColors()
 ---
 
 <!DOCTYPE html>
@@ -21,78 +18,14 @@ const { foreground, background } = generateColors()
 		<title>{title}</title>
 	</head>
 	<body>
-    <div class="fixed bottom-10 right-10 space-x-1">
-      <button 
-        id="button" 
-        class="text-[var(--foreground)]"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-          <path fill-rule="evenodd" d="M9 4.5a.75.75 0 01.721.544l.813 2.846a3.75 3.75 0 002.576 2.576l2.846.813a.75.75 0 010 1.442l-2.846.813a3.75 3.75 0 00-2.576 2.576l-.813 2.846a.75.75 0 01-1.442 0l-.813-2.846a3.75 3.75 0 00-2.576-2.576l-2.846-.813a.75.75 0 010-1.442l2.846-.813A3.75 3.75 0 007.466 7.89l.813-2.846A.75.75 0 019 4.5zM18 1.5a.75.75 0 01.728.568l.258 1.036c.236.94.97 1.674 1.91 1.91l1.036.258a.75.75 0 010 1.456l-1.036.258c-.94.236-1.674.97-1.91 1.91l-.258 1.036a.75.75 0 01-1.456 0l-.258-1.036a2.625 2.625 0 00-1.91-1.91l-1.036-.258a.75.75 0 010-1.456l1.036-.258a2.625 2.625 0 001.91-1.91l.258-1.036A.75.75 0 0118 1.5zM16.5 15a.75.75 0 01.712.513l.394 1.183c.15.447.5.799.948.948l1.183.395a.75.75 0 010 1.422l-1.183.395c-.447.15-.799.5-.948.948l-.395 1.183a.75.75 0 01-1.422 0l-.395-1.183a1.5 1.5 0 00-.948-.948l-1.183-.395a.75.75 0 010-1.422l1.183-.395c.447-.15.799-.5.948-.948l.395-1.183A.75.75 0 0116.5 15z" clip-rule="evenodd" />
-        </svg>
-      </button>
-    </div>
-    <main class="mt-[25vh] max-w-3xl mx-auto pb-24 px-8 md:px-0">
+    <main class="mt-[25vh] max-w-xl mx-auto pb-24 px-8 md:px-0">
       <slot />
     </main>
 	</body> 
 </html>
 
-<script define:vars={{ foreground, background }}>
-  const html = document.querySelector(':root')
-
-  const setColors = (background, foreground) => { 
-    html?.style.setProperty('--background', background)
-    html?.style.setProperty('--foreground', foreground)
+<style>
+  :root {
+    @apply cursor-crosshair;
   }
-
- 
-  
-</script>
-
-<script>
-  import { generateColors } from '../utils/color.js'
-
-  const colorButton = document.getElementById('button')
-  const html = document.querySelector(':root')
-
-  const setColors = (background: string, foreground: string) => { 
-    html?.style.setProperty('--background', background)
-    html?.style.setProperty('--foreground', foreground)
-  }
-
-   if (sessionStorage.getItem('colors')) {
-    const { background, foreground } = JSON.parse(sessionStorage.getItem('colors')!)
-    setColors(background, foreground)
-  } 
-
-  if (colorButton)
-    colorButton.addEventListener('click', () => {
-      const {foreground, background} = generateColors()
-      sessionStorage.setItem('colors', JSON.stringify({ foreground, background }))
-      setColors(background, foreground)
-    })
-</script>
-
-<style is:global>
-
-	:root {
-    /* @apply bg-black text-white; */
-    --background: #000000;
-    --foreground: #FFFFFF;
-    @apply bg-[var(--background)] text-[var(--foreground)];
-	}
-
-  @font-face {
-    font-family: 'GeneralSans';
-    src: url('/fonts/GeneralSans-Variable.woff2') format('woff2');
-  }
-  
-  pre { 
-    @apply px-4 py-4 rounded-md text-lg;
-  }
-
-	code {
-		font-family: 'GeneralSans', Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
-	}
 </style>

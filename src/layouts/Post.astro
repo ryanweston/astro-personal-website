@@ -7,16 +7,16 @@ const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric
 
 <Layout title={frontmatter.title}>
   <div class="space-y-8">
-    <a href="/" class="font-medium text-sm">Back</a>
+    <!-- <a href="/" class="font-medium text-sm">Back</a> -->
     <div class="space-y-12">
       <div class="space-y-8">
-        <div class="space-x-4 flex flex-row items-center opacity-60">
+        <!-- <div class="space-x-4 flex flex-row items-center opacity-60">
           <p class="border-l-2 font-medium border-[var(--foreground)] pl-3 text-sm text-[var(--foreground)]">{new Date(frontmatter.pubDate).toLocaleDateString('en-US', options)}</p>
-        </div>
-        <h1 class="text-5xl font-medium">{frontmatter.title}</h1>   
+        </div> -->
+        <h1 class="font-medium">{frontmatter.title}</h1>   
         
       </div>
-      <div class="space-y-8 font-light font-blog">
+      <div class="space-y-8 text-sm">
         <slot />
       </div>
     </div>

@@ -1,54 +1,37 @@
 ---
+import ArrowUpRight from '../components/ArrowUpRight.astro';
 import Layout from '../layouts/Layout.astro';
-import Button from '../components/Button.astro';
 
 const allPosts = await Astro.glob('../pages/posts/*.md')
 const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 ---
 
 <Layout title="Ryan Weston">
-  <div class="space-y-14">
-    <div class="space-y-8">
-      <h1 class="text-4xl font-medium">Hi, I'm Ryan.</h1>
-      <p class="text-3xl leading-10">
+      <h1 class="text-sm">Ryan Weston</h1>
+      <h2 class="text-sm">Engineer & designer</h2>
+      <div class="space-y-8 mt-8 text-sm">
+      <p>
         I'm an engineer & designer with a passion for design systems, problem solving
-        & writing. I'm currently working as a frontend engineer at <a class="border-b-2 border-[var(--foreground)] pb-1 hover:cursor-pointer">Cudo Ventures</a>.
+        & writing. I'm currently working as a frontend engineer at <a class="border-b border-black hover:bg-sky-100">Cudo Ventures</a>.
       </p>
-      <div class="flex flex-row items-center space-x-4">
-        <Button href="/">
-          Read case studies
-        </Button>
-        <a href="/" class="font-medium text-sm">Request resume</a>
+      <p>
+        In my spare time I work on building <a class="border-b border-black hover:bg-sky-100">Predictable</a>, a social football league prediction application. When I’m not building,
+        I’m obsessing over the details of <a class="border-b border-black hover:bg-sky-100">Unlocked</a>, a design system built for design systems.
+      </p>
+      <div class="flex flex-row space-x-3 text-sm">
+        <a class="hover:bg-sky-100 space-x-2">Twitter <ArrowUpRight/></a>
+        <a class="hover:bg-sky-100 space-x-2">GitHub <ArrowUpRight/></a>
+        <a class="hover:bg-sky-100 space-x-2">Instagram <ArrowUpRight/></a>
       </div>
     </div>
-    <div>
-      <h2 class='pb-2'>Writing</h2>
-      <div class="grid grid-cols-2 gap-6">
-      <ul role="list">
+      <ul role="list" class="border-dashed border-t border-black mt-10 text-sm">
         { allPosts.map((post) => 
-          <li class="space-y-2 py-4">
-            <a href={post.url} class="space-y-3">
-              <div class="space-x-4 flex flex-row items-center opacity-60">
-                <p class="border-l-2 font-medium border-[var(--foreground)] pl-3 text-sm text-[var(--foreground)]">{new Date(post.frontmatter.pubDate).toLocaleDateString('en-US', options)}</p>
-              </div>
-              <h4 class="text-xl">{post.frontmatter.title}</h4>
+          <li class="py-4 border-dashed border-b border-black">
+            <a href={post.url} class="flex flex-row justify-between">
+              <h4 class="">{post.frontmatter.title}</h4>
+              <p>{new Date(post.frontmatter.pubDate).toLocaleDateString('en-US')}</p>
             </a>
           </li>
         )}
       </ul>
-      <ul role="list">
-        { allPosts.map((post) => 
-          <li class="space-y-2 py-4">
-            <a href={post.url} class="space-y-3">
-              <div class="space-x-4 flex flex-row items-center opacity-60">
-                <p class="border-l-2 font-medium border-[var(--foreground)] pl-3 text-sm text-[var(--foreground)]">{new Date(post.frontmatter.pubDate).toLocaleDateString('en-US', options)}</p>
-              </div>
-              <h4 class="text-xl">{post.frontmatter.title}</h4>
-            </a>
-          </li>
-        )}
-      </ul>
-    </div>
-    </div>
-  </div>
 </Layout>
