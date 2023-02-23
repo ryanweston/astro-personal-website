@@ -1,0 +1,13 @@
+---
+import Navigation from "../components/Navigation.astro";
+import Layout from "./Default.astro";
+
+const { title } = Astro.props;
+---
+
+<Layout title={title}>
+  <Navigation />
+  <div class="py-10">
+    <slot />
+  </div>
+</Layout>

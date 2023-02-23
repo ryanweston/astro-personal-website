@@ -1,37 +1,45 @@
 ---
-import ArrowUpRight from '../components/ArrowUpRight.astro';
-import Layout from '../layouts/Layout.astro';
+// import ArrowUpRight from '../components/ArrowUpRight.astro';
+import Layout from '../layouts/Default.astro';
 
-const allPosts = await Astro.glob('../pages/posts/*.md')
-const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+const posts = await Astro.glob('../pages/posts/*.md')
+// const nonDraftPosts = posts.filter((post) => !post.frontmatter.draft)
+const sortedPosts = posts.sort((a, b) => Date.parse(b.frontmatter.pubDate) - Date.parse(a.frontmatter.pubDate));
 ---
 
 <Layout title="Ryan Weston">
-      <h1 class="text-sm">Ryan Weston</h1>
-      <h2 class="text-sm">Engineer & designer</h2>
-      <div class="space-y-8 mt-8 text-sm">
-      <p>
-        I'm an engineer & designer with a passion for design systems, problem solving
-        & writing. I'm currently working as a frontend engineer at <a class="border-b border-black hover:bg-sky-100">Cudo Ventures</a>.
-      </p>
-      <p>
-        In my spare time I work on building <a class="border-b border-black hover:bg-sky-100">Predictable</a>, a social football league prediction application. When I’m not building,
-        I’m obsessing over the details of <a class="border-b border-black hover:bg-sky-100">Unlocked</a>, a design system built for design systems.
-      </p>
-      <div class="flex flex-row space-x-3 text-sm">
-        <a class="hover:bg-sky-100 space-x-2">Twitter <ArrowUpRight/></a>
-        <a class="hover:bg-sky-100 space-x-2">GitHub <ArrowUpRight/></a>
-        <a class="hover:bg-sky-100 space-x-2">Instagram <ArrowUpRight/></a>
-      </div>
+  <div class="mt-[25vh]">
+    <div class="flex flex-row space-x-4">
+      <div class="h-12 w-12 rounded-full bg-sky-100"/>
+      <div class="flex flex-col">
+        <h1 class="text-base font-medium">Ryan Weston</h1>
+        <h2 class="text-base">Engineer & designer</h2>
+      </div>  
     </div>
-      <ul role="list" class="border-dashed border-t border-black mt-10 text-sm">
-        { allPosts.map((post) => 
-          <li class="py-4 border-dashed border-b border-black">
-            <a href={post.url} class="flex flex-row justify-between">
-              <h4 class="">{post.frontmatter.title}</h4>
-              <p>{new Date(post.frontmatter.pubDate).toLocaleDateString('en-US')}</p>
-            </a>
-          </li>
-        )}
-      </ul>
+    <div class="space-y-8 mt-8 text-base">
+    <p>
+      I'm an engineer & designer with a passion for design systems, problem solving
+      & writing. I'm currently working as a frontend engineer at Cudo Ventures, working on <a href="https://cudocompute.com" target="_blank" class="border-b border-black hover:bg-sky-100">Cudo Compute</a>.
+    </p>
+    <p>
+      In my spare time I work on building <a class="border-b border-black hover:bg-sky-100">Predictable</a>, a social football league prediction application. When I’m not building,
+      I’m obsessing over the details of <a href="https://unlocked.to" target="_blank" class="border-b border-black hover:bg-sky-100">Unlocked</a>, a design system built for design systems.
+    </p>
+    <!-- <div class="flex flex-row space-x-3 text-base">
+      <a class="hover:bg-sky-100 space-x-2">Twitter <ArrowUpRight/></a>
+      <a class="hover:bg-sky-100 space-x-2">GitHub <ArrowUpRight/></a>
+      <a class="hover:bg-sky-100 space-x-2">Instagram <ArrowUpRight/></a>
+    </div> -->
+  </div>
+    <ul role="list" class="border-dashed border-t border-black/30 mt-10 text-base">
+      { sortedPosts.map((post) => 
+        <li class="py-4 space-y-4 border-dashed border-b border-black/30">
+          <a href={post.url} class="flex flex-row justify-between space-x-6">
+            <h4 class="">{post.frontmatter.title}</h4>
+            <p>{new Date(post.frontmatter.pubDate).toLocaleDateString('en-UK')}</p>
+          </a>
+        </li>
+      )}
+    </ul>
+  </div>
 </Layout>

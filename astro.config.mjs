@@ -6,7 +6,13 @@ import vercel from "@astrojs/vercel/serverless";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind()],
+  // build draft pages
+  mardown: { 
+    drafts: true
+  },
+  integrations: [tailwind(), mdx({ 
+    drafts: true,
+  })],
   output: "server",
   adapter: vercel()
 });

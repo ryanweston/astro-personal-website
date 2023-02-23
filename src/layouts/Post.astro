@@ -1,26 +1,32 @@
 ---
-import Layout from "./Layout.astro";
+import Page from "./Page.astro";
 
 const { frontmatter } = Astro.props;
-const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 ---
 
-<Layout title={frontmatter.title}>
-  <div class="space-y-8">
-    <!-- <a href="/" class="font-medium text-sm">Back</a> -->
-    <div class="space-y-12">
-      <div class="space-y-8">
-        <!-- <div class="space-x-4 flex flex-row items-center opacity-60">
-          <p class="border-l-2 font-medium border-[var(--foreground)] pl-3 text-sm text-[var(--foreground)]">{new Date(frontmatter.pubDate).toLocaleDateString('en-US', options)}</p>
-        </div> -->
-        <h1 class="font-medium">{frontmatter.title}</h1>   
-        
+<Page title={frontmatter.title}>
+    <!-- <a href="/" class="text-xs"><- home</a> -->
+    <div class="space-y-8">
+      <div class="space-y-2">
+        <p class="text-xs">{new Date(frontmatter.pubDate).toLocaleDateString('en-UK')}</p>
+        <h1 class="font-medium text-lg">{frontmatter.title}</h1>   
       </div>
-      <div class="space-y-8 text-sm">
+      <div class="space-y-8 post text-base">
         <slot />
       </div>
     </div>
-  </div>
-</Layout>
 
+</Page>
+
+<style is:global>
+  .post h1 {
+    @apply font-medium;
+  }
+  .post a {
+    @apply border-b border-black hover:bg-sky-100;
+  }
+  .post pre {
+    @apply rounded-lg px-6 py-4 !bg-zinc-800;
+  }
+</style>
 
