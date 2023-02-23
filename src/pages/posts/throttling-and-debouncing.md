@@ -3,6 +3,7 @@ layout: ../../layouts/Post.astro
 title: 'What are throttling and debouncing events?'
 pubDate: 2023-02-22
 description: 'Continuing to improve as a frontend engineer and finding my niche.'
+draft: true
 ---
 
 A throttled event is an event that sets a delay after every successful call. To limit the amount of event executions that can be executed in given time period. For example, we have an incrementor function that we want to limit to only be callable every `300ms`.

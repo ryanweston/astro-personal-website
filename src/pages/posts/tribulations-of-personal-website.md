@@ -3,6 +3,7 @@ layout: ../../layouts/Post.astro
 title: 'The trials and tribulations of building yourself a personal website.'
 pubDate: 2023-01-30
 description: 'Building a personal site for yourself, the trials and tribulations'
+draft: true
 ---
 
 I'm a self described 'glass half full' designer. The majority of the time I'm never content with my work. There are those times however, following my 100th tweak of the same button's border in the space of a couple hours, I can take a deep breath and smile. I sit back and take in the composition from every angle possible to make sure, just one last time, that I'm somewhat content. I can sleep in peace.

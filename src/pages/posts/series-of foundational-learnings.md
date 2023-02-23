@@ -3,6 +3,7 @@ layout: ../../layouts/Post.astro
 title: 'A series of technical learnings & mental models'
 pubDate: 2023-02-01
 description: 'Continuing to improve as a frontend engineer and finding my niche.'
+draft: true
 ---
 
 There's always a new technology to learn, a theory or concept to revise or a skill to practice. As software engineers, we've comitted to a lifelong journey of learning. But often we have our fingers in a lot pies. Technology excites us, and we want to know how it works inside and out. But if you're not consistently using that technology and building up a solid mental model, it's hard to recall after some time.
