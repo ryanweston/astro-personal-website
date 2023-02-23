@@ -10,9 +10,7 @@ export default defineConfig({
   mardown: { 
     drafts: true
   },
-  integrations: [tailwind(), mdx({ 
-    drafts: true,
-  })],
+  integrations: [tailwind()],
   output: "server",
   adapter: vercel()
 });
