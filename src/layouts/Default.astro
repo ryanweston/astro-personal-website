@@ -16,15 +16,18 @@ const { title } = Astro.props;
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 		<title>{title}</title>
 	</head>
-	<body>
+	<body class="cursor-crosshair dark:text-white dark:bg-black font-light">
     <main class="max-w-xl mx-auto pb-24 px-8 md:px-0">
       <slot />
     </main>
 	</body> 
 </html>
 
-<style>
-  :root {
-    @apply cursor-crosshair text-black font-light;
+<script>
+  // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+  if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+  } else {
+      document.documentElement.classList.remove('dark')
   }
-</style>
+</script>

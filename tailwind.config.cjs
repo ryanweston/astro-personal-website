@@ -4,6 +4,7 @@ module.exports = {
    content: [
     './src/**/*.{html,js,astro}',
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
