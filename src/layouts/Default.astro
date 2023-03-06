@@ -15,6 +15,14 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 		<title>{title}</title>
+    <script is:inline>
+      // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+      if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+      } else {
+          document.documentElement.classList.remove('dark')
+      }
+    </script>
 	</head>
 	<body class="cursor-crosshair dark:text-white dark:bg-black font-light">
     <main class="max-w-xl mx-auto pb-24 px-8 md:px-0">
@@ -23,11 +31,3 @@ const { title } = Astro.props;
 	</body> 
 </html>
 
-<script>
-  // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-  if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.add('dark');
-  } else {
-      document.documentElement.classList.remove('dark')
-  }
-</script>
