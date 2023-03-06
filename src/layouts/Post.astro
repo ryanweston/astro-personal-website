@@ -1,21 +1,21 @@
 ---
+// Layout for blog posts
 import Page from "./Page.astro";
 
 const { frontmatter } = Astro.props;
 ---
 
-<Page title={frontmatter.title}>
-    <!-- <a href="/" class="text-xs"><- home</a> -->
-    <div class="space-y-8">
-      <div class="space-y-2">
-        <p class="text-xs">{new Date(frontmatter.pubDate).toLocaleDateString('en-UK')}</p>
-        <h1 class="font-medium text-lg">{frontmatter.title}</h1>   
-      </div>
-      <div class="space-y-8 post text-base">
-        <slot />
-      </div>
+<Page title={frontmatter.title} desc={frontmatter.description}>
+  <!-- <a href="/" class="text-xs"><- home</a> -->
+  <div class="space-y-8">
+    <div class="space-y-2">
+      <p class="text-xs">{new Date(frontmatter.pubDate).toLocaleDateString('en-UK')}</p>
+      <h1 class="font-medium text-lg">{frontmatter.title}</h1>   
     </div>
-
+    <div class="space-y-8 post text-base">
+      <slot />
+    </div>
+  </div>
 </Page>
 
 <style is:global>

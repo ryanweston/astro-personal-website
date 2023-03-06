@@ -1,11 +1,12 @@
 ---
+// Layout with Navigation to wrap non-landing pages 
 import Navigation from "../components/Navigation.astro";
 import Layout from "./Default.astro";
 
-const { title } = Astro.props;
+const { title, desc } = Astro.props;
 ---
 
-<Layout title={title}>
+<Layout title={title} desc={desc}>
   <Navigation />
   <div class="py-10">
     <slot />

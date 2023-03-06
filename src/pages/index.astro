@@ -7,9 +7,10 @@ import ThemeToggle from '../components/ThemeToggle.astro'
 const posts = await Astro.glob('../pages/posts/*.md')
 // const nonDraftPosts = posts.filter((post) => !post.frontmatter.draft)
 const sortedPosts = posts.sort((a, b) => Date.parse(b.frontmatter.pubDate) - Date.parse(a.frontmatter.pubDate));
+const description = "Software engineer & designer from the UK with passion for design systems, problem solving & writing"
 ---
 
-<Layout title="Ryan Weston">
+<Layout title="Ryan Weston" desc={description}>
   <div class="mt-[25vh]">
     <div class="flex flex-row justify-between">
       <div class="flex flex-row space-x-5">
@@ -27,7 +28,7 @@ const sortedPosts = posts.sort((a, b) => Date.parse(b.frontmatter.pubDate) - Dat
       & writing. I'm currently working as a frontend engineer at Cudo Ventures, working on <a href="https://cudocompute.com" target="_blank" class="border-b border-white hover:bg-white/20">Cudo Compute</a>.
     </p>
     <p>
-      In my spare time I work on building <a class="border-b border-black hover:bg-black/10 dark:border-white dark:hover:bg-white/20">Predictable</a>, a social football league prediction application. When I’m not building,
+      In my spare time I work on building <a href="/" target="_blank" class="border-b border-black hover:bg-black/10 dark:border-white dark:hover:bg-white/20">Predictable</a>, a social football league prediction application. When I’m not building,
       I’m obsessing over the details of <a href="https://unlocked.to" target="_blank" class="border-b border-white hover:bg-white/20">Unlocked</a>, a design system built for design systems.
     </p>
     <!-- <div class="flex flex-row space-x-3 text-base">
