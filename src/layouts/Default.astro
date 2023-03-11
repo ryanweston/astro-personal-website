@@ -16,7 +16,7 @@ const { title, desc } = Astro.props;
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 		<title>{title}</title>
     <meta name="description" content={desc} />
-    <script is:inline defer data-domain="wstn.me" src="https://plausible.io/js/script.js"></script>
+    <script defer data-domain="wstn.me" src="https://plausible.io/js/script.js"></script>
     <script is:inline>
       if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
           document.documentElement.classList.add('dark');
